@@ -135,7 +135,7 @@ int ChunkNotify(void* self, int blockIdx, QBox_UP_BlockProgress* prog) {
     //obtaining saving path
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat: @"yyyy-MM-dd-HH-mm-ss-zzz"];
+    [formatter setDateFormat: @"yyyy-MM-dd-HH-mm-ss"];
     //Optionally for time zone converstions
     //[formatter setTimeZone:[NSTimeZone timeZoneWithName:@"..."]];
     
@@ -177,8 +177,9 @@ int ChunkNotify(void* self, int blockIdx, QBox_UP_BlockProgress* prog) {
         QBox_UP_Progress* prog = QBox_UP_NewProgress([[manager attributesOfItemAtPath:localPath error:nil] fileSize]);
         QBox_UP_PutRet putRet;
         
+        NSLog(@"<<<<<<Key:http://joyplus.dn.qbox.me/%@>>>>>>", fileName);
         QBox_Error err = [RSClient resumablePutFile:[NSString stringWithUTF8String:uptoken] 
-                                        tableName:@"Bucket" 
+                                        tableName:@"joyplus" 
                                               key:fileName 
                                          mimeType:nil 
                                              file:localPath progress:prog 
